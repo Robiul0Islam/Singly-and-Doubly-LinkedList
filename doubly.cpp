@@ -22,6 +22,7 @@ class doubly{
     void insertFirst(int data);
     void Delete(int data);
     Node* search(int data);
+    void insertAfterOne(int value,int to_insert);
 
 };
 doubly::doubly(){
@@ -96,6 +97,21 @@ void doubly::Delete(int value){
 
     
 }
+void doubly::insertAfterOne(int value,int to_insert){
+    Node* n= new Node(to_insert);
+    Node* temp=head;
+    while(temp->next!=NULL){
+        if(temp->data==value){
+            n->next=temp->next;
+            temp->next->prev=n;
+
+            temp->next=n;
+            n->prev=temp;
+        }
+        temp=temp->next;
+    }
+    
+}
 
 
 int main(){
@@ -112,6 +128,9 @@ int main(){
     d.insertFirst(4);
     d.print();
     d.Delete(3);
+    cout<<endl;
+    d.print();
+    d.insertAfterOne(5,10);
     cout<<endl;
     d.print();
     Node* n=d.search(3);

@@ -13,11 +13,13 @@ class SLL{
     void insertLast(int data);
     void Delete(int data);
     Node* search(int data);
+    void insertAfterOne(int value,int to_insert);
 
 };
 SLL::SLL(){
     this->head=NULL;
 }
+
 
 Node* SLL::search(int value){
     Node* temp=head;
@@ -78,11 +80,20 @@ void SLL::Delete(int value){
         temp=temp->next;
     }
 
+ 
     
+}
 
-
-    
-    
+void SLL::insertAfterOne(int value,int to_insert){
+    Node* n=new Node(to_insert);
+    Node* temp=head;
+    while(temp->next!=NULL){
+        if(temp->data==value){
+            n->next=temp->next;
+            temp->next=n;
+        }
+        temp=temp->next;
+    }
 }
 
 void SLL::print(){
@@ -107,6 +118,8 @@ int main(){
     s.Delete(1);
     
    
+    s.print();
+    s.insertAfterOne(5,10);
     s.print();
     Node* n=s.search(9);
     if(n!=NULL){
